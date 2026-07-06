@@ -1,5 +1,5 @@
 {
-  "name": "la-homelessness-initiative",
+  "name": "la-homelessness-youth",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.60.0",
-    "@reddoorla/maintenance": "^0.65.0",
+    "@reddoorla/maintenance": "^0.69.0",
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/kit": "^2.61.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
