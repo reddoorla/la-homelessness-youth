@@ -678,8 +678,7 @@
               name="message"
               class="w-full h-48 p-3 rounded-sm"
               placeholder="Your Message"
-              bind:value={suggestionMessage}
-            ></textarea>
+              bind:value={suggestionMessage}></textarea>
 
             <button type="submit" class="flex flex-row gap-3" id="submitButton">
               {#if !isEmailSending}
