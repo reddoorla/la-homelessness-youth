@@ -526,6 +526,10 @@
 
 <svelte:head>
   <title>Hearts and Minds</title>
+  <meta
+    name="description"
+    content="Hearts and Minds raises awareness for LA’s unhoused youth and their mental health — learn about the homeless crisis and find organizations doing good in Los Angeles."
+  />
 </svelte:head>
 
 <main class="w-screen h-screen fixed">
