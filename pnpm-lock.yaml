@@ -14,13 +14,13 @@ importers:
     devDependencies:
       '@axe-core/playwright':
         specifier: ^4.11.3
-        version: 4.12.1(playwright-core@1.62.1)
+        version: 4.13.0(playwright-core@1.62.1)
       '@playwright/test':
         specifier: ^1.60.0
         version: 1.62.1
       '@reddoorla/maintenance':
-        specifier: ^0.76.0
-        version: 0.76.0(@sveltejs/kit@2.70.2(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.8(@typescript-eslint/types@8.66.0))(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(jiti@2.7.0)(playwright-core@1.62.1)(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)
+        specifier: ^0.81.0
+        version: 0.81.0(@sveltejs/kit@2.70.2(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.8(@typescript-eslint/types@8.66.0))(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(jiti@2.7.0)(playwright-core@1.62.1)(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)
       '@sveltejs/adapter-netlify':
         specifier: ^6.0.4
         version: 6.0.4(@sveltejs/kit@2.70.2(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.8(@typescript-eslint/types@8.66.0))(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))
@@ -72,8 +72,8 @@ importers:
 
 packages:
 
-  '@axe-core/playwright@4.12.1':
-    resolution: {integrity: sha512-rMd7xriptqKpP+w5265i4Hdkv2X5kbu6uiBi/B2I7uf3hieRBM3qDCfaKPtxfiYb2mKXfF+yLODJwIx+Jv1GDw==}
+  '@axe-core/playwright@4.13.0':
+    resolution: {integrity: sha512-6YLx+kxXu5GJceG4ozFg+33a2EMTdjYwWGloJ3sb9Kta5pp+ZNS53uxGVog5JetIY8s++P5UrtX+cri+u0VAVg==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
 
@@ -327,8 +327,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@reddoorla/maintenance@0.76.0':
-    resolution: {integrity: sha512-VbrMvnKyC4VRGfRHETIdvkH61l3aMuSIV1StsFGCv2tMwe4xF7RhhHMh9YPx2YyvFClylPOxfvuanJ/xoas+EQ==}
+  '@reddoorla/maintenance@0.81.0':
+    resolution: {integrity: sha512-tKy7f1u5551zX5WHG9sAzvvVn78LHcG1QvLUtwUgDgRrQrtckBhNjbVUWhTfWw+Vds6MMwedzXQNiGbKNxFn5A==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -670,8 +670,8 @@ packages:
     resolution: {integrity: sha512-Z/ZeOgVl7bcSYZ/u/rh0fOpvEpq//LZmdbkXyc7syVzjPAhfOa9ebsdTSjEBDU4vs5nC98Kfduj1uFo0qyET3g==}
     engines: {node: '>= 0.4'}
 
-  axe-core@4.12.1:
-    resolution: {integrity: sha512-s7iGf5GaVMxEG0ENN9x+xTr7GFZCb1ZP/1uATUpCEK2X78nDB3RwbtFCo9pGAf9ru+VwoQ464DkaLEeRM08wJA==}
+  axe-core@4.13.0:
+    resolution: {integrity: sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==}
     engines: {node: '>=4'}
 
   axobject-query@4.1.0:
@@ -1536,9 +1536,9 @@ packages:
 
 snapshots:
 
-  '@axe-core/playwright@4.12.1(playwright-core@1.62.1)':
+  '@axe-core/playwright@4.13.0(playwright-core@1.62.1)':
     dependencies:
-      axe-core: 4.12.1
+      axe-core: 4.13.0
       playwright-core: 1.62.1
 
   '@esbuild/aix-ppc64@0.25.12':
@@ -1702,9 +1702,9 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@reddoorla/maintenance@0.76.0(@sveltejs/kit@2.70.2(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.8(@typescript-eslint/types@8.66.0))(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(jiti@2.7.0)(playwright-core@1.62.1)(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)':
+  '@reddoorla/maintenance@0.81.0(@sveltejs/kit@2.70.2(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.8(@typescript-eslint/types@8.66.0))(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)(vite@8.2.1(@types/node@25.9.5)(jiti@2.7.0)))(jiti@2.7.0)(playwright-core@1.62.1)(svelte@5.56.8(@typescript-eslint/types@8.66.0))(typescript@6.0.3)':
     dependencies:
-      '@axe-core/playwright': 4.12.1(playwright-core@1.62.1)
+      '@axe-core/playwright': 4.13.0(playwright-core@1.62.1)
       '@eslint/js': 10.0.1(eslint@10.8.1(jiti@2.7.0))
       '@playwright/test': 1.62.1
       cac: 6.7.14
@@ -2011,7 +2011,7 @@ snapshots:
 
   aria-query@5.3.1: {}
 
-  axe-core@4.12.1: {}
+  axe-core@4.13.0: {}
 
   axobject-query@4.1.0: {}
 
