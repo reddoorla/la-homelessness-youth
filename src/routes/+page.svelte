@@ -526,6 +526,10 @@
 
 <svelte:head>
   <title>Hearts and Minds</title>
+  <meta
+    name="description"
+    content="Hearts and Minds raises awareness for LA’s unhoused youth and their mental health — learn about the homeless crisis and find organizations doing good in Los Angeles."
+  />
 </svelte:head>
 
 <main class="w-screen h-screen fixed">
@@ -678,8 +682,7 @@
               name="message"
               class="w-full h-48 p-3 rounded-sm"
               placeholder="Your Message"
-              bind:value={suggestionMessage}
-            ></textarea>
+              bind:value={suggestionMessage}></textarea>
 
             <button type="submit" class="flex flex-row gap-3" id="submitButton">
               {#if !isEmailSending}
