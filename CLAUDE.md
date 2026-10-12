@@ -1,15 +1,17 @@
 # CLAUDE.md
 
 _Hearts and Minds_ — a single-page scrollytelling awareness site about unhoused
-youth and their mental health in Los Angeles. SvelteKit 2 / Svelte 5 /
+youth and their mental health in Los Angeles. SvelteKit 3 / Svelte 5 /
 Tailwind v4 on Netlify, split from `la-homelessness-initiative` in July 2026.
 There is no CMS: the entire site, copy and animation alike, lives in one
 2,592-line `src/routes/+page.svelte`, with two stores (`$lib/stores/activeFrame`,
 `$lib/stores/colors`) sliding full-viewport `Panel`s in and out.
 
 Commands: `pnpm dev`, `pnpm build`, `pnpm check` (svelte-check), `pnpm lint`
-(prettier + eslint), `pnpm format`. There is no `test` script here — CI is the
-org's reusable workflow (`reddoorla/.github` `ci.yml`).
+(prettier + eslint), `pnpm format`, `pnpm test` (`node --test` over `scripts/`: the
+kit 3 config and env-declaration gate, no extra dependency). CI is the org's
+reusable workflow (`reddoorla/.github` `ci.yml`). Kit 3 exposes only the env
+vars declared in `src/env.ts`; an undeclared read is silently `undefined`.
 
 Two things worth knowing before you change something:
 
