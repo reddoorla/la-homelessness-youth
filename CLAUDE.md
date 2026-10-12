@@ -8,7 +8,7 @@ There is no CMS: the entire site, copy and animation alike, lives in one
 `$lib/stores/colors`) sliding full-viewport `Panel`s in and out.
 
 Commands: `pnpm dev`, `pnpm build`, `pnpm check` (svelte-check), `pnpm lint`
-(prettier + eslint), `pnpm format`, `pnpm test` (`node --test scripts/`: the
+(prettier + eslint), `pnpm format`, `pnpm test` (`node --test` over `scripts/`: the
 kit 3 config and env-declaration gate, no extra dependency). CI is the org's
 reusable workflow (`reddoorla/.github` `ci.yml`). Kit 3 exposes only the env
 vars declared in `src/env.ts`; an undeclared read is silently `undefined`.
