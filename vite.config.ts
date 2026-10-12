@@ -1,8 +1,9 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import kitConfig from "./sveltekit.config.js";
 
 export default defineConfig({
-  plugins: [sveltekit(), tailwindcss()],
+  plugins: [sveltekit(kitConfig), tailwindcss()],
   server: { fs: { allow: [".."] } },
 });
