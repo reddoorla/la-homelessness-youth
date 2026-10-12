@@ -51,3 +51,26 @@ slug `youth-mental-health`, which matches neither repo's name.
 **State as of this entry.** Branch `chore/work-journal` off `main` at
 `dc068b2`, tree clean, no other branches, nothing in flight. Today's change is
 this file and a new `CLAUDE.md`.
+
+## 2026-10-12 — SvelteKit 3 and adapter-netlify 7 on `staging`, and the staging flow (#31, #32; promotion #33)
+
+This repo is the first factory-shaped site in the fleet's kit 3 migration. It is one of the repos the operator moved onto the feature → staging → main flow (reddoor-maintenance Operator decisions 113, #545).
+
+- `staging` was cut from `main` at `dddb216`, and Netlify now builds `staging--la-homelessness-youth.netlify.app`.
+- `main-gate` (#31) and the migration (#32) landed on `staging`.
+- Only the operator merges the promotion, #33.
+
+**The port was small:**
+
+- `svelte.config.js`'s `createSvelteConfig({ kit: { adapter } })` became `sveltekit.config.js`'s `createKitConfig({ adapter })` from `@reddoorla/maintenance` 0.107.0. The review loaded both in node and found the adapter, aliases and warning filter carried over, with `$lib` added.
+- The forms endpoint, `/health` and the dev layout read through `$app/env`, against the starter's `src/env.ts`.
+
+**The gate had to be ported, and its first run proved nothing.** This repo has no unit runner, and adding vitest for one file would have widened the change. So the starter's `kit-config` gate became `scripts/kit-config.test.mjs` on `node:test`, with `pnpm test` running it, which CI's "Test (if present)" step picks up.
+
+- The first `node --test scripts/` treated the directory as a module, so nothing ran.
+- With a glob it runs 8 checks. Four mutations each turn one red: the forms endpoint back on `$env/dynamic/private`, `FORMS_INGEST_TOKEN` undeclared, `paths.origin` set, and a `svelte.config.js` restored.
+- CI's log on #32 shows `node --test 'scripts/**/*.test.mjs'` running with every case passing.
+
+**The env change, checked where it matters.** Kit 3 turns an undeclared env read into a silent `undefined`. Staging's `/health` reads `ingestUrl: true, ingestToken: true, turnstile: false`, identical to production on kit 2, so the declared variables reach the deployed function. The smoke suite (2 tests) passed on both.
+
+**Left as it was.** This file's `CLAUDE.md` still says the sibling repo has the `/health` endpoint and smoke suite this one lacks. Both exist here now. That predates this change, and the review noted it.
