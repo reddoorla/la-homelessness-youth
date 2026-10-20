@@ -18,5 +18,8 @@ export const POST: RequestHandler = createIngestEndpoint({
     message: str(body.message),
     subject: str(body.subject),
     sourceUrl: str(body.sourceUrl),
+    // The fleet form-e2e probe's marker. Central ingest drops a payload with
+    // top-level `testMode: true` (no row, no email); /health declares it.
+    ...(body.testMode === "true" ? { testMode: true } : {}),
   }),
 });

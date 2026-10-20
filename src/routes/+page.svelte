@@ -88,6 +88,9 @@
 
   async function handleSubmit(event: Event) {
     event.preventDefault();
+    // The fleet form-e2e probe's marker is a hidden input it injects, so read it
+    // from the form element: it is in none of the bound state above.
+    const isProbe = new FormData(event.currentTarget as HTMLFormElement).get("testMode") === "true";
     if (isEmailSending) return; // re-entry guard
     isEmailSending = true;
     isEmailSent = false;
@@ -105,6 +108,7 @@
           message: suggestionMessage,
           "bot-field": botField,
           sourceUrl: window.location.href,
+          ...(isProbe ? { testMode: "true" } : {}),
         }),
       });
 
@@ -503,6 +507,17 @@
     setTimeout(() => runFrameOne(), 1000);
   };
 
+  // /contact 301s to /#contact (src/routes/contact): open the suggestion modal for
+  // it, on load and on an in-page hash change.
+  onMount(() => {
+    const openOnHash = () => {
+      if (window.location.hash === "#contact") isSuggestionModalActive = true;
+    };
+    openOnHash();
+    window.addEventListener("hashchange", openOnHash);
+    return () => window.removeEventListener("hashchange", openOnHash);
+  });
+
   onMount(() => {
     runFrameOne();
     window.addEventListener("resize", () => {
@@ -620,93 +635,101 @@
       </button>
     </div>
   {/if}
-  {#if isSuggestionModalActive}
-    <div
-      class="w-screen overflow-y-auto overflow-x-hidden h-screen bg-help-light fixed z-50 top-0 left-0"
-      transition:fly={{ x: "-100%" }}
-    >
-      <div class="flex flex-col items-center justify-center gap-20 p-12 pb-24">
-        {#if !isEmailSent}
-          {#if isEmailFailed}
-            <button
-              class="z-10 absolute flex flex-col items-center justify-center top-2 border-pink border-4 rounded-sm bg-help-dark"
-              onclick={() => (isEmailFailed = false)}
-              transition:fade
-            >
-              <h2 class="h-as-h5 text-night p-8">
-                Something went wrong. Please fill all fields and retry.
-              </h2>
-            </button>
-          {/if}
-          <form
-            class="w-full flex flex-col gap-8 max-w-[600px]"
-            name="contact"
-            id="contact"
-            method="POST"
-            onsubmit={handleSubmit}
+  <!-- The suggestion modal stays in the DOM while closed (invisible and inert), so
+       the fleet's form-e2e probe finds the form at domcontentloaded. /contact 301s
+       to /#contact, which opens it on load. The CSS transition stands in for the
+       old `fly` from the left, which only ran on an {#if} mount. -->
+  <div
+    inert={!isSuggestionModalActive}
+    class="w-screen overflow-y-auto overflow-x-hidden h-screen bg-help-light fixed z-50 top-0 left-0 transition-[translate,opacity,visibility] duration-400 ease-out {isSuggestionModalActive
+      ? 'visible translate-x-0 opacity-100'
+      : 'invisible -translate-x-full opacity-0'}"
+  >
+    <div class="flex flex-col items-center justify-center gap-20 p-12 pb-24">
+      {#if !isEmailSent}
+        {#if isEmailFailed}
+          <button
+            class="z-10 absolute flex flex-col items-center justify-center top-2 border-pink border-4 rounded-sm bg-help-dark"
+            onclick={() => (isEmailFailed = false)}
+            transition:fade
           >
-            <h2 class="h-as-h5 text-light-orange">SEND US A MESSAGE</h2>
-            <!-- Honeypot: hidden from real users; a filled value is screened as a bot. -->
-            <input
-              type="text"
-              name="bot-field"
-              tabindex="-1"
-              autocomplete="off"
-              aria-hidden="true"
-              class="hidden"
-              bind:value={botField}
-            />
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              class="p-3 rounded-sm"
-              bind:value={suggestionName}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email Address"
-              class="p-3 rounded-sm"
-              bind:value={suggestionEmail}
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              class="p-3 rounded-sm"
-              bind:value={suggestionSubject}
-            />
-
-            <textarea
-              name="message"
-              class="w-full h-48 p-3 rounded-sm"
-              placeholder="Your Message"
-              bind:value={suggestionMessage}></textarea>
-
-            <button type="submit" class="flex flex-row gap-3" id="submitButton">
-              {#if !isEmailSending}
-                <div class="btn-text text-orange">Send Message</div>
-                <svg
-                  class="w-16 text-orange"
-                  viewBox="0 0 150 31"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    id="Vector"
-                    d="M3.05339 11.2409C38.1895 7.973 73.546 7.74546 108.722 10.5023C116.387 11.1044 124.041 11.8571 131.671 12.7373C131.13 12.4335 130.58 12.1442 130.035 11.8439C125.375 9.31656 120.715 6.78918 116.056 4.2618C114.907 3.64365 113.317 2.18852 114.418 0.820324C115.464 -0.484194 118.091 0.090017 119.293 0.744115C124.825 3.73931 130.357 6.73451 135.882 9.74452C140.394 12.1871 147.405 14.5337 149.421 19.7056C149.78 20.6233 149.582 21.3361 148.718 21.8718C142.302 25.772 135.318 28.5632 127.993 30.2237C126.304 30.5998 124.06 29.9674 122.949 28.5989C121.941 27.3684 122.308 25.9412 123.93 25.5691C130.241 24.1378 136.174 21.7916 141.763 18.5906C141.592 18.4013 141.42 18.2341 141.233 18.0662C140.521 18.3513 139.606 18.3718 138.964 18.299C104.576 13.9307 69.8531 12.4908 35.2271 14.0388C25.2928 14.4845 15.3646 15.1773 5.4654 16.0971C2.22322 16.4101 -1.83735 11.7036 3.05339 11.2409Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              {:else}
-                <div>
-                  <LoaderCircle size={32} class="text-orange animate-spin leading-4" />
-                </div>
-              {/if}
-            </button>
-          </form>
+            <h2 class="h-as-h5 text-night p-8">
+              Something went wrong. Please fill all fields and retry.
+            </h2>
+          </button>
         {/if}
+        <form
+          class="w-full flex flex-col gap-8 max-w-[600px]"
+          name="contact"
+          id="contact"
+          method="POST"
+          onsubmit={handleSubmit}
+        >
+          <h2 class="h-as-h5 text-light-orange">SEND US A MESSAGE</h2>
+          <!-- Honeypot: hidden from real users; a filled value is screened as a bot. -->
+          <input
+            type="text"
+            name="bot-field"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="hidden"
+            bind:value={botField}
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            class="p-3 rounded-sm"
+            bind:value={suggestionName}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            class="p-3 rounded-sm"
+            bind:value={suggestionEmail}
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            class="p-3 rounded-sm"
+            bind:value={suggestionSubject}
+          />
+
+          <textarea
+            name="message"
+            class="w-full h-48 p-3 rounded-sm"
+            placeholder="Your Message"
+            bind:value={suggestionMessage}></textarea>
+
+          <button type="submit" class="flex flex-row gap-3" id="submitButton">
+            {#if !isEmailSending}
+              <div class="btn-text text-orange">Send Message</div>
+              <svg
+                class="w-16 text-orange"
+                viewBox="0 0 150 31"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  id="Vector"
+                  d="M3.05339 11.2409C38.1895 7.973 73.546 7.74546 108.722 10.5023C116.387 11.1044 124.041 11.8571 131.671 12.7373C131.13 12.4335 130.58 12.1442 130.035 11.8439C125.375 9.31656 120.715 6.78918 116.056 4.2618C114.907 3.64365 113.317 2.18852 114.418 0.820324C115.464 -0.484194 118.091 0.090017 119.293 0.744115C124.825 3.73931 130.357 6.73451 135.882 9.74452C140.394 12.1871 147.405 14.5337 149.421 19.7056C149.78 20.6233 149.582 21.3361 148.718 21.8718C142.302 25.772 135.318 28.5632 127.993 30.2237C126.304 30.5998 124.06 29.9674 122.949 28.5989C121.941 27.3684 122.308 25.9412 123.93 25.5691C130.241 24.1378 136.174 21.7916 141.763 18.5906C141.592 18.4013 141.42 18.2341 141.233 18.0662C140.521 18.3513 139.606 18.3718 138.964 18.299C104.576 13.9307 69.8531 12.4908 35.2271 14.0388C25.2928 14.4845 15.3646 15.1773 5.4654 16.0971C2.22322 16.4101 -1.83735 11.7036 3.05339 11.2409Z"
+                  fill="currentColor"
+                />
+              </svg>
+            {:else}
+              <div>
+                <LoaderCircle size={32} class="text-orange animate-spin leading-4" />
+              </div>
+            {/if}
+          </button>
+        </form>
+      {/if}
+      <!-- An always-present live region, empty until the thank-you renders inside
+             it. It is also the success signal the fleet's form-e2e probe waits for. -->
+      <div role="status">
         {#if isEmailSent}
           <div class="w-full h-72 flex flex-col items-start justify-start gap-16 p-16 md:p-32">
             <h2 class="h-as-h5 text-orange">THANK YOU!</h2>
@@ -729,16 +752,16 @@
           </div>
         {/if}
       </div>
-
-      <button
-        class="absolute top-4 right-8 text-pink hover:text-light-pink bump"
-        onclick={() => (isSuggestionModalActive = false)}
-        aria-label="Close"
-      >
-        <X size={24} />
-      </button>
     </div>
-  {/if}
+
+    <button
+      class="absolute top-4 right-8 text-pink hover:text-light-pink bump"
+      onclick={() => (isSuggestionModalActive = false)}
+      aria-label="Close"
+    >
+      <X size={24} />
+    </button>
+  </div>
   {#if isHelpModalActive}
     <div
       class="w-screen h-screen bg-masthead-pink fixed z-50 top-0 left-0 overflow-y-auto overflow-x-hidden"
