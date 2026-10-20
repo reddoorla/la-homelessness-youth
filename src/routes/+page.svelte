@@ -511,7 +511,11 @@
   // it, on load and on an in-page hash change.
   onMount(() => {
     const openOnHash = () => {
-      if (window.location.hash === "#contact") isSuggestionModalActive = true;
+      if (window.location.hash !== "#contact") return;
+      isSuggestionModalActive = true;
+      // Drop the hash once it has opened the modal, so a reload does not reopen it
+      // and a later #contact link fires hashchange again.
+      history.replaceState(history.state, "", window.location.pathname + window.location.search);
     };
     openOnHash();
     window.addEventListener("hashchange", openOnHash);
@@ -661,7 +665,7 @@
         <form
           class="w-full flex flex-col gap-8 max-w-[600px]"
           name="contact"
-          id="contact"
+          id="contact-form"
           method="POST"
           onsubmit={handleSubmit}
         >
@@ -727,31 +731,31 @@
           </button>
         </form>
       {/if}
-      <!-- An always-present live region, empty until the thank-you renders inside
-             it. It is also the success signal the fleet's form-e2e probe waits for. -->
-      <div role="status">
-        {#if isEmailSent}
-          <div class="w-full h-72 flex flex-col items-start justify-start gap-16 p-16 md:p-32">
-            <h2 class="h-as-h5 text-orange">THANK YOU!</h2>
-            <p>We appreciate your feedback. We'll get back to you as soon as we can.</p>
-            <button onclick={() => (isSuggestionModalActive = false)} class="flex flex-row gap-3">
-              <div class="btn-text text-orange">Go Back to site</div>
-              <svg
-                class="w-16 text-orange"
-                viewBox="0 0 150 31"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  id="Vector"
-                  d="M3.05339 11.2409C38.1895 7.973 73.546 7.74546 108.722 10.5023C116.387 11.1044 124.041 11.8571 131.671 12.7373C131.13 12.4335 130.58 12.1442 130.035 11.8439C125.375 9.31656 120.715 6.78918 116.056 4.2618C114.907 3.64365 113.317 2.18852 114.418 0.820324C115.464 -0.484194 118.091 0.090017 119.293 0.744115C124.825 3.73931 130.357 6.73451 135.882 9.74452C140.394 12.1871 147.405 14.5337 149.421 19.7056C149.78 20.6233 149.582 21.3361 148.718 21.8718C142.302 25.772 135.318 28.5632 127.993 30.2237C126.304 30.5998 124.06 29.9674 122.949 28.5989C121.941 27.3684 122.308 25.9412 123.93 25.5691C130.241 24.1378 136.174 21.7916 141.763 18.5906C141.592 18.4013 141.42 18.2341 141.233 18.0662C140.521 18.3513 139.606 18.3718 138.964 18.299C104.576 13.9307 69.8531 12.4908 35.2271 14.0388C25.2928 14.4845 15.3646 15.1773 5.4654 16.0971C2.22322 16.4101 -1.83735 11.7036 3.05339 11.2409Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </div>
-        {/if}
-      </div>
+      {#if isEmailSent}
+        <!-- role="status" is also the success signal the fleet's form-e2e probe waits for. -->
+        <div
+          class="w-full h-72 flex flex-col items-start justify-start gap-16 p-16 md:p-32"
+          role="status"
+        >
+          <h2 class="h-as-h5 text-orange">THANK YOU!</h2>
+          <p>We appreciate your feedback. We'll get back to you as soon as we can.</p>
+          <button onclick={() => (isSuggestionModalActive = false)} class="flex flex-row gap-3">
+            <div class="btn-text text-orange">Go Back to site</div>
+            <svg
+              class="w-16 text-orange"
+              viewBox="0 0 150 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="Vector"
+                d="M3.05339 11.2409C38.1895 7.973 73.546 7.74546 108.722 10.5023C116.387 11.1044 124.041 11.8571 131.671 12.7373C131.13 12.4335 130.58 12.1442 130.035 11.8439C125.375 9.31656 120.715 6.78918 116.056 4.2618C114.907 3.64365 113.317 2.18852 114.418 0.820324C115.464 -0.484194 118.091 0.090017 119.293 0.744115C124.825 3.73931 130.357 6.73451 135.882 9.74452C140.394 12.1871 147.405 14.5337 149.421 19.7056C149.78 20.6233 149.582 21.3361 148.718 21.8718C142.302 25.772 135.318 28.5632 127.993 30.2237C126.304 30.5998 124.06 29.9674 122.949 28.5989C121.941 27.3684 122.308 25.9412 123.93 25.5691C130.241 24.1378 136.174 21.7916 141.763 18.5906C141.592 18.4013 141.42 18.2341 141.233 18.0662C140.521 18.3513 139.606 18.3718 138.964 18.299C104.576 13.9307 69.8531 12.4908 35.2271 14.0388C25.2928 14.4845 15.3646 15.1773 5.4654 16.0971C2.22322 16.4101 -1.83735 11.7036 3.05339 11.2409Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      {/if}
     </div>
 
     <button
