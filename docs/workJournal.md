@@ -74,3 +74,11 @@ This repo is the first factory-shaped site in the fleet's kit 3 migration. It is
 **The env change, checked where it matters.** Kit 3 turns an undeclared env read into a silent `undefined`. Staging's `/health` reads `ingestUrl: true, ingestToken: true, turnstile: false`, identical to production on kit 2, so the declared variables reach the deployed function. The smoke suite (2 tests) passed on both.
 
 **Left as it was.** This file's `CLAUDE.md` still says the sibling repo has the `/health` endpoint and smoke suite this one lacks. Both exist here now. That predates this change, and the review noted it.
+
+## 2026-10-20 — The suggestion form is covered by the fleet's form-e2e probe (#37, into `staging`)
+
+The same change as la-homelessness-initiative's on the same day, whose journal carries the full story; the code diff is identical. In short: the fleet's form-e2e probe refuses to submit unless `/health` declares `forms.testMode`, and needs a `<form>` in the DOM on `/contact` or `/`. The suggestion modal now stays in the DOM while closed (invisible and `inert`, a CSS transition replacing `fly`), `/contact` 301s to `/#contact`, which opens it, the client reads the probe's hidden `testMode` input from the form element, `/api/forms` forwards it, `/health` declares it, and "THANK YOU!" carries `role="status"`.
+
+**Beliefs corrected on contact.** This repo's CLAUDE.md said the sibling had a `/health` endpoint and a smoke suite this repo lacks. It has had both since #4 (`3338b1d`); the CLAUDE.md now says so. And here `/health` reports `turnstile: false` (no sitekey), so once the probe covers the site it writes `turnstileWidget: "fail"` where it wrote null; `require_turnstile` is 0 for this site, so no digest alarm follows.
+
+**The probe cannot see a broken forward**, so the smoke suite submits the real form to a local capture ingest and asserts on the body. Each brief mutation turns it red: the server dropping `testMode` (1 of 5), reading it from bound state (1 of 5), no `role="status"` (2 of 5), a broken hash opener (3 of 5).

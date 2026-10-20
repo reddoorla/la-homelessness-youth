@@ -9,7 +9,9 @@ There is no CMS: the entire site, copy and animation alike, lives in one
 
 Commands: `pnpm dev`, `pnpm build`, `pnpm check` (svelte-check), `pnpm lint`
 (prettier + eslint), `pnpm format`, `pnpm test` (`node --test` over `scripts/`: the
-kit 3 config and env-declaration gate, no extra dependency). CI is the org's
+kit 3 config and env-declaration gate, no extra dependency), `pnpm test:smoke`
+(Playwright, `tests/smoke/`, including the contact form against a local capture
+ingest). CI is the org's
 reusable workflow (`reddoorla/.github` `ci.yml`). Kit 3 exposes only the env
 vars declared in `src/env.ts`; an undeclared read is silently `undefined`.
 
@@ -21,9 +23,9 @@ Two things worth knowing before you change something:
   replacement for v3's `safelist`. A new colour must be added to the `@theme`
   block AND that list, or the class silently does not exist.
 - **History up to `dc068b2` is shared with `la-homelessness-initiative`, and
-  the two have since diverged.** The sibling gained a `/health` endpoint and a
-  smoke suite that this repo does not have. Do not assume a fix that landed
-  there landed here.
+  the two have since diverged.** Both have a `/health` endpoint and a smoke
+  suite now (this repo since #4), but do not assume a fix that landed there
+  landed here.
 
 ## The work journal
 
