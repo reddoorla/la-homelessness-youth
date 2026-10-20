@@ -14,6 +14,9 @@ export const GET: RequestHandler = async () => {
     ingestUrl: !!privateEnv.FORMS_INGEST_URL,
     ingestToken: !!privateEnv.FORMS_INGEST_TOKEN,
     turnstile: !!publicEnv.PUBLIC_TURNSTILE_SITE_KEY?.trim(),
+    // /api/forms forwards the form-e2e probe's `testMode` marker, so the fleet
+    // probe may submit here.
+    testMode: true,
   };
   // We're inside the handler, so the function ran.
   const ok = true;
