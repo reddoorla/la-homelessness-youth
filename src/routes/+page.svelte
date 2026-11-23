@@ -1368,9 +1368,9 @@
           in:fly={{ delay: 400, duration: 400, x: "100%" }}
           class="z-10 text-light-pink max-w-[992px] w-4/5 text-center mx-auto mt-16"
         >
-          Without adequate care, young people are at greater <span class="text-[#EAD4DF]"
-            >risk of suicide attempts and suicide.</span
-          >
+          Without adequate care, young people are at greater <span class="text-[#EAD4DF]">
+            risk of suicide attempts and suicide.
+          </span>
         </h3>
       {/if}
     </div>
@@ -1944,26 +1944,34 @@
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.instagram.com/youngpeopletothefront/"
-                aria-label="Instagram"><Instagram size={20} /></a
+                aria-label="Instagram"
               >
+                <Instagram size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.linkedin.com/company/yp2f"
-                aria-label="LinkedIn"><Linkedin size={20} /></a
+                aria-label="LinkedIn"
               >
+                <Linkedin size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://podcasts.apple.com/us/podcast/young-people-to-the-front/id1686036117"
-                aria-label="Podcast"><Mic size={20} /></a
+                aria-label="Podcast"
               >
+                <Mic size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.yp2f.org/"
-                aria-label="Website"><ExternalLink size={20} /></a
+                aria-label="Website"
               >
+                <ExternalLink size={20} />
+              </a>
             </div>
 
             <div class="flex-row gap-5 flex mt-7">
@@ -1971,14 +1979,18 @@
                 onclick={() => activeFeature--}
                 class="{activeFeature === 0
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">&lt; back</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                &lt; back
+              </button>
               <button
                 onclick={() => activeFeature++}
                 class="{activeFeature === 2
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">next &gt;</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                next &gt;
+              </button>
             </div>
           </div>
         </div>
@@ -2020,32 +2032,42 @@
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.instagram.com/safeplaceforyouth/"
-                aria-label="Instagram"><Instagram size={20} /></a
+                aria-label="Instagram"
               >
+                <Instagram size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.youtube.com/channel/UCUy5AnugYb4OhLuooZEByDA"
-                aria-label="YouTube"><Youtube size={20} /></a
+                aria-label="YouTube"
               >
+                <Youtube size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://twitter.com/safeplace4youth"
-                aria-label="X (Twitter)"><BrandX size={20} /></a
+                aria-label="X (Twitter)"
               >
+                <BrandX size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.facebook.com/SafePlaceForYouth/"
-                aria-label="Facebook"><Facebook size={20} /></a
+                aria-label="Facebook"
               >
+                <Facebook size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.safeplaceforyouth.org/"
-                aria-label="Website"><ExternalLink size={20} /></a
+                aria-label="Website"
               >
+                <ExternalLink size={20} />
+              </a>
             </div>
 
             <div
@@ -2058,15 +2080,19 @@
                 onclick={() => activeFeature--}
                 class="{activeFeature === 0
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">&lt; back</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                &lt; back
+              </button>
               <button
                 transition:fade
                 onclick={() => activeFeature++}
                 class="{activeFeature === 2
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">next &gt;</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                next &gt;
+              </button>
             </div>
           </div>
         </div>
@@ -2108,32 +2134,42 @@
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.instagram.com/myfriendsplace"
-                aria-label="Instagram"><Instagram size={20} /></a
+                aria-label="Instagram"
               >
+                <Instagram size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.youtube.com/channel/UCwP9v838Jx58xYUjZoqehIg"
-                aria-label="YouTube"><Youtube size={20} /></a
+                aria-label="YouTube"
               >
+                <Youtube size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://twitter.com/MFPLA"
-                aria-label="X (Twitter)"><BrandX size={20} /></a
+                aria-label="X (Twitter)"
               >
+                <BrandX size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.facebook.com/mfphollywood/"
-                aria-label="Facebook"><Facebook size={20} /></a
+                aria-label="Facebook"
               >
+                <Facebook size={20} />
+              </a>
               <a
                 target="_blank"
                 class="text-light-orange hover:text-orange transition-colors"
                 href="https://www.myfriendsplace.org/"
-                aria-label="Website"><ExternalLink size={20} /></a
+                aria-label="Website"
               >
+                <ExternalLink size={20} />
+              </a>
             </div>
 
             <div class="flex-row gap-5 flex mt-7">
@@ -2142,15 +2178,19 @@
                 onclick={() => activeFeature--}
                 class="{activeFeature === 0
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">&lt; back</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                &lt; back
+              </button>
               <button
                 transition:fade
                 onclick={() => activeFeature++}
                 class="{activeFeature === 2
                   ? 'opacity-40 pointer-events-none'
-                  : ''} carousel-nav text-light-orange hover:text-orange bump">next &gt;</button
+                  : ''} carousel-nav text-light-orange hover:text-orange bump"
               >
+                next &gt;
+              </button>
             </div>
           </div>
         </div>
@@ -2236,63 +2276,79 @@
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.instagram}
-                          aria-label="Instagram"><Instagram size={20} /></a
+                          aria-label="Instagram"
                         >
+                          <Instagram size={20} />
+                        </a>
                       {/if}
                       {#if org.youtube}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.youtube}
-                          aria-label="YouTube"><Youtube size={20} /></a
+                          aria-label="YouTube"
                         >
+                          <Youtube size={20} />
+                        </a>
                       {/if}
                       {#if org.twitter}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.twitter}
-                          aria-label="X (Twitter)"><BrandX size={20} /></a
+                          aria-label="X (Twitter)"
                         >
+                          <BrandX size={20} />
+                        </a>
                       {/if}
                       {#if org.facebook}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.facebook}
-                          aria-label="Facebook"><Facebook size={20} /></a
+                          aria-label="Facebook"
                         >
+                          <Facebook size={20} />
+                        </a>
                       {/if}
                       {#if org.linkedin}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.linkedin}
-                          aria-label="LinkedIn"><Linkedin size={20} /></a
+                          aria-label="LinkedIn"
                         >
+                          <Linkedin size={20} />
+                        </a>
                       {/if}
                       {#if org.podcast}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.podcast}
-                          aria-label="Podcast"><Mic size={20} /></a
+                          aria-label="Podcast"
                         >
+                          <Mic size={20} />
+                        </a>
                       {/if}
                       {#if org.tiktok}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.tiktok}
-                          aria-label="TikTok"><BrandTiktok size={20} /></a
+                          aria-label="TikTok"
                         >
+                          <BrandTiktok size={20} />
+                        </a>
                       {/if}
                       <a
                         target="_blank"
                         class="text-light-orange hover:text-orange transition-colors"
                         href={org.siteUrl}
-                        aria-label="Website"><ExternalLink size={20} /></a
+                        aria-label="Website"
                       >
+                        <ExternalLink size={20} />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -2357,32 +2413,40 @@
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.instagram}
-                          aria-label="Instagram"><Instagram size={20} /></a
+                          aria-label="Instagram"
                         >
+                          <Instagram size={20} />
+                        </a>
                       {/if}
                       {#if org.youtube}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.youtube}
-                          aria-label="YouTube"><Youtube size={20} /></a
+                          aria-label="YouTube"
                         >
+                          <Youtube size={20} />
+                        </a>
                       {/if}
                       {#if org.twitter}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.twitter}
-                          aria-label="X (Twitter)"><BrandX size={20} /></a
+                          aria-label="X (Twitter)"
                         >
+                          <BrandX size={20} />
+                        </a>
                       {/if}
                       {#if org.facebook}
                         <a
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.facebook}
-                          aria-label="Facebook"><Facebook size={20} /></a
+                          aria-label="Facebook"
                         >
+                          <Facebook size={20} />
+                        </a>
                       {/if}
 
                       {#if org.tiktok}
@@ -2390,15 +2454,19 @@
                           target="_blank"
                           class="text-light-orange hover:text-orange transition-colors"
                           href={org.tiktok}
-                          aria-label="TikTok"><BrandTiktok size={20} /></a
+                          aria-label="TikTok"
                         >
+                          <BrandTiktok size={20} />
+                        </a>
                       {/if}
                       <a
                         target="_blank"
                         class="text-light-orange hover:text-orange transition-colors"
                         href={org.siteUrl}
-                        aria-label="Website"><ExternalLink size={20} /></a
+                        aria-label="Website"
                       >
+                        <ExternalLink size={20} />
+                      </a>
                     </div>
                   </div>
                 </div>

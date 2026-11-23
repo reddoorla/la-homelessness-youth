@@ -63,8 +63,10 @@
     onmouseover={() => (isHovered = true)}
     onfocus={() => (isHovered = true)}
     onmouseout={() => (isHovered = false)}
-    onblur={() => (isHovered = false)}>HOW WE KNOW</button
+    onblur={() => (isHovered = false)}
   >
+    HOW WE KNOW
+  </button>
 
   <div
     class="w-full rounded-lg
